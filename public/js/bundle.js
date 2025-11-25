@@ -7156,7 +7156,7 @@ const login = async (email, password) => {
   try {
     const res = await (0, _axios.default)({
       method: 'POST',
-      url: 'http://127.0.0.1:3000/api/v1/users/login',
+      url: '/api/v1/users/login',
       data: {
         email,
         password
@@ -7177,7 +7177,7 @@ const logout = async () => {
   try {
     const res = await (0, _axios.default)({
       method: 'GET',
-      url: 'http://127.0.0.1:3000/api/v1/users/logout'
+      url: '/api/v1/users/logout'
     });
     if (res.data.status = 'success') location.reload(true);
   } catch (err) {
@@ -7201,7 +7201,7 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e
 // type is either 'password' or 'data'
 const updateSettings = async (data, type) => {
   try {
-    const url = type === "password" ? "http://127.0.0.1:3000/api/v1/users/updateMyPassword" : "http://127.0.0.1:3000/api/v1/users/updateMe";
+    const url = type === "password" ? "/api/v1/users/updateMyPassword" : "/api/v1/users/updateMe";
     const res = await (0, _axios.default)({
       method: "PATCH",
       url,
@@ -7229,8 +7229,7 @@ const stripe = Stripe("pk_test_51SWVIbK55reZt4bMk3k5qoRJnPwFu4uQTax4fsABXNuFeGgT
 const bookTour = async tourId => {
   // 1) Get checkout session from API
   try {
-    const session = await (0, _axios.default)(`http://127.0.0.1:3000/api/v1/bookings/checkout-session/${tourId}`);
-    console.log(session);
+    const session = await (0, _axios.default)(`/api/v1/bookings/checkout-session/${tourId}`);
     // 2) Create checkoutform + charge credit card
     await stripe.redirectToCheckout({
       sessionId: session.data.session.id
@@ -7279,7 +7278,6 @@ if (userDataForm) userDataForm.addEventListener("submit", e => {
   form.append("name", document.getElementById("name").value);
   form.append("email", document.getElementById("email").value);
   form.append("photo", document.getElementById("photo").files[0]);
-  console.log(form);
   (0, _updateSettings.updateSettings)(form, "data");
 });
 if (userPasswordForm) userPasswordForm.addEventListener("submit", async e => {
@@ -7328,7 +7326,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49685" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64241" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
