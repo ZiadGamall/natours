@@ -75,6 +75,8 @@ natours/
 └── server.js           # Server entry point
 ```
 
+---
+
 ### ⚙️ Installation
 
 ```
