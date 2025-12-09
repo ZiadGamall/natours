@@ -84,3 +84,14 @@ exports.updateUserData = catchAsync(async (req, res, next) => {
     user: updatedUser,
   });
 });
+
+exports.getSignupForm = (req, res) => {
+  if (res.locals.user) {
+    // If a user is already logged in redirect to home page
+    return res.redirect("/");
+  }
+
+  res.status(200).render("signup", {
+    title: "Create a new account",
+  });
+};

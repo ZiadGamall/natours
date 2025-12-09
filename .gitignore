@@ -4,5 +4,5 @@ config.env
 .vscode/
 dev-data/
 public/js/bundle.js
-public/js/bundle.map
+public/js/bundle.js.map
 public/img

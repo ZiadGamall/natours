@@ -4,6 +4,7 @@ import { displayMap } from "./mapbox";
 import { login, logout } from "./login";
 import { updateSettings } from "./updateSettings";
 import { bookTour } from "./stripe";
+import { signup } from "./signup";
 
 // DOM ELEMENTS
 const mapBox = document.getElementById("map");
@@ -12,11 +13,46 @@ const logOutBtn = document.querySelector(".nav__el--logout");
 const userDataForm = document.querySelector(".form-user-data");
 const userPasswordForm = document.querySelector(".form-user-password");
 const bookBtn = document.getElementById("book-tour");
+const signupForm = document.querySelector(".form--signup");
+const photoInput = document.getElementById("photo");
+const photoPreview = document.getElementById("photo_preview");
 
 // DELEGATION
 if (mapBox) {
   const locations = JSON.parse(mapBox.dataset.locations);
   displayMap(locations);
+}
+
+if (signupForm) {
+  signupForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const form = new FormData();
+    form.append("name", document.getElementById("username").value);
+    form.append("email", document.getElementById("email").value);
+    form.append("password", document.getElementById("password").value);
+    form.append(
+      "passwordConfirm",
+      document.getElementById("password-confirm").value,
+    );
+
+    if (photoInput) {
+      form.append("photo", photoInput.files[0]);
+    }
+
+    signup(form);
+  });
+}
+
+if (photoInput) {
+  photoInput.addEventListener("change", () => {
+    const file = photoInput.files[0];
+    if (!file) return;
+
+    const imgURL = URL.createObjectURL(file);
+
+    photoPreview.src = imgURL;
+  });
 }
 
 if (loginForm)
