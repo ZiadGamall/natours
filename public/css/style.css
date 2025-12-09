@@ -1289,6 +1289,7 @@ body {
   height: 7.5rem;
   width: 7.5rem;
   border-radius: 50%;
+  object-fit: cover;
   margin-right: 2rem;
 }
 

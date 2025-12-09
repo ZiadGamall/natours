@@ -1,0 +1,25 @@
+extends base
+
+block content
+    main.main
+    .login-form
+      h2.heading-secondary.ma-bt-lg Create a new account
+      form.form.form--signup(method="POST", action="/signup")
+        .form__group
+          label.form__label(for='username') Username
+          input#username.form__input(type='text', placeholder='Ahmed Mohamed', required)
+        .form__group
+          label.form__label(for='email') Email address
+          input#email.form__input(type='email', placeholder='you@example.com', required)
+        .form__group.ma-bt-md
+          label.form__label(for='password') Password
+          input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+        .form__group.ma-bt-md
+          label.form__label(for='password-confirm') Confirm password
+          input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+        .form__group.form__photo-upload
+            img.form__user-photo#photo_preview(src="/img/users/default.jpg", alt='User photo')
+            input#photo.form__upload(type='file', accept='image/*', name='photo')
+            label(for='photo') Upload Your Image
+        .form__group
+          button.btn.btn--green(type='submit') Create Account
