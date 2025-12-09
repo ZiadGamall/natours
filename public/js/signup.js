@@ -3,11 +3,10 @@ import { showAlert } from "./alerts";
 
 export const signup = async (userData) => {
   try {
-    console.log(userData);
-    const res = await axios({
-      method: "POST",
-      url: "/api/v1/users/signup",
-      data: userData,
+    const res = await axios.post("/api/v1/users/signup", userData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     });
 
     if (res.data.status === "success") {
