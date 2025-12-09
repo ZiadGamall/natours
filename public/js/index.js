@@ -18,8 +18,6 @@ const photoInput = document.getElementById("photo");
 const photoPreview = document.getElementById("photo_preview");
 
 // DELEGATION
-console.log("JS is running")
-
 if (mapBox) {
   const locations = JSON.parse(mapBox.dataset.locations);
   displayMap(locations);
