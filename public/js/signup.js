@@ -5,7 +5,7 @@ export const signup = async (userData) => {
   try {
     const res = await axios({
       method: "POST",
-      url: "/api/v1/users/signup",
+      url: `${window.location.origin}/api/v1/users/signup`,
       data: userData,
       headers: {
         "Content-Type": "multipart/form-data",
