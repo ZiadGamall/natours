@@ -36,6 +36,11 @@ exports.getTour = catchAsync(async (req, res, next) => {
 });
 
 exports.getLoginForm = (req, res) => {
+  if (res.locals.user) {
+    // If a user is already logged in redirect to home page
+    return res.redirect("/");
+  }
+
   res.status(200).render("login", {
     title: "Log into your account",
   });
