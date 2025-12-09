@@ -5,3 +5,4 @@ config.env
 dev-data/
 public/js/bundle.js
 public/js/bundle.map
+public/img
