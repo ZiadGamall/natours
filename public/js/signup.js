@@ -5,14 +5,11 @@ export const signup = async (userData) => {
   try {
     const res = await axios({
       method: "POST",
-      url: `${window.location.origin}/api/v1/users/signup`,
+      url: "/api/v1/users/login",
       data: userData,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
     });
 
-    console.log(res)
+    console.log(res);
     console.log("RESPONSE RECEIVED:", res.data);
     console.log("STATUS FIELD:", res.data.status);
 
