@@ -12,6 +12,7 @@ export const signup = async (userData) => {
       },
     });
 
+    console.log(res)
     console.log("RESPONSE RECEIVED:", res.data);
     console.log("STATUS FIELD:", res.data.status);
 
