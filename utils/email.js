@@ -14,7 +14,7 @@ module.exports = class Email {
   newTransport() {
     if (process.env.NODE_ENV === "production") {
       return nodemailer.createTransport({
-        service: "smtp.mailgun.org",
+        host: "smtp.mailgun.org",
         auth: {
           user: process.env.MAILGUN_USERNAME,
           pass: process.env.MAILGUN_PASSWORD,
