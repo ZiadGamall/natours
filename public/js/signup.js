@@ -1,12 +1,13 @@
 import axios from "axios";
 import { showAlert } from "./alerts";
 
-export const signup = async (userData) => {
+export const signup = async (data) => {
   try {
+    console.log(data);
     const res = await axios({
       method: "POST",
       url: "/api/v1/users/signup",
-      data: userData,
+      data,
     });
 
     console.log(res);
