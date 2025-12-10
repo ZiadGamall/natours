@@ -14,10 +14,10 @@ module.exports = class Email {
   newTransport() {
     if (process.env.NODE_ENV === "production") {
       return nodemailer.createTransport({
-        service: "Sendgrid",
+        service: "smtp.mailgun.org",
         auth: {
-          user: process.env.SENDGRID_USERNAME,
-          pass: process.env.SENDGRID_PASSWORD,
+          user: process.env.MAILGUN_USERNAME,
+          pass: process.env.MAILGUN_PASSWORD,
         },
       });
     }
