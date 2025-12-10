@@ -36,9 +36,9 @@ if (signupForm) {
       document.getElementById("password-confirm").value,
     );
 
-    if (photoInput) {
-      form.append("photo", photoInput.files[0]);
-    }
+    // if (photoInput) {
+    //   form.append("photo", photoInput.files[0]);
+    // }
     console.log(form)
     signup(form);
   });

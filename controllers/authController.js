@@ -39,14 +39,14 @@ exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
-    photo: req.file ? req.file.filename : "default.jpg",
+    // photo: req.file ? req.file.filename : "default.jpg",
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
   });
-  console.log("User created")
+  console.log("User created");
   const url = `${req.protocol}://${req.get("host")}/me`;
   await new Email(newUser, url).sendWelcome();
-  console.log("Email sent")
+  console.log("Email sent");
   createSendToken(newUser, 201, req, res);
 });
 
