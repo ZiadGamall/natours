@@ -39,7 +39,7 @@ if (signupForm) {
     if (photoInput) {
       form.append("photo", photoInput.files[0]);
     }
-    console.log(form);
+
     signup(form);
   });
 }

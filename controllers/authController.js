@@ -36,9 +36,6 @@ const createSendToken = (user, statusCode, req, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
-  console.log("BODY:", req.body);
-  console.log("FILE:", req.file);
-
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
@@ -46,14 +43,12 @@ exports.signup = catchAsync(async (req, res, next) => {
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
   });
-  console.log("User created");
-  try {
-    const url = `${req.protocol}://${req.get("host")}/me`;
-    await new Email(newUser, url).sendWelcome();
-    console.log("Email sent");
-  } catch (err) {
-    console.error("Email send failed: ", err);
-  }
+
+  const url = `${req.protocol}://${req.get("host")}/me`;
+  new Email(newUser, url)
+    .sendWelcome()
+    .then(() => console.log("Email sent"))
+    .catch((err) => console.error("Email send failed: ", err));
   createSendToken(newUser, 201, req, res);
 });
 
