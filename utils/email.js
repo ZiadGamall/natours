@@ -19,8 +19,6 @@ module.exports = class Email {
           user: process.env.SENDGRID_USERNAME,
           pass: process.env.SENDGRID_PASSWORD,
         },
-        connectionTimeout: 5000,
-        socketTimeout: 5000,
       });
     }
 
