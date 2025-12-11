@@ -1,7 +1,7 @@
-const nodemailer = require("nodemailer");
 const pug = require("pug");
 const { htmlToText } = require("html-to-text");
 const path = require("path");
+const sgMail = require("@sendgrid/mail");
 
 module.exports = class Email {
   constructor(user, url) {
@@ -9,28 +9,8 @@ module.exports = class Email {
     this.firstName = user.name.split(" ")[0];
     this.url = url;
     this.from = `Ziad Gamal <${process.env.EMAIL_FROM}>`;
-  }
 
-  newTransport() {
-    if (process.env.NODE_ENV === "production") {
-      return nodemailer.createTransport({
-        service: "SendGrid",
-        port: 2525,
-        auth: {
-          user: process.env.SENDGRID_USERNAME,
-          pass: process.env.SENDGRID_PASSWORD,
-        },
-      });
-    }
-
-    return nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
-      auth: {
-        user: process.env.EMAIL_USERNAME,
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
+    sgMail.setApiKey(process.env.SENDGRID_PASSWORD);
   }
 
   async send(template, subject) {
@@ -44,7 +24,7 @@ module.exports = class Email {
       },
     );
     // 2) Define email options
-    const mailOptions = {
+    const msg = {
       from: this.from,
       to: this.to,
       subject,
@@ -53,17 +33,17 @@ module.exports = class Email {
     };
 
     // 3) Create a transport and send email
-    await this.newTransport().sendMail(mailOptions);
+    return sgMail.send(msg);
   }
 
-  async sendWelcome() {
-    await this.send("welcome", "Welcome to the Natours Family!");
+  sendWelcome() {
+    return this.send("welcome", "Welcome to the Natours Family!");
   }
 
-  async sendPasswordReset() {
-    await this.send(
+  sendPasswordReset() {
+    return this.send(
       "passwordReset",
-      "Your password reset token (valid for only 10 minutes!",
+      "Your password reset token (valid for only 10 minutes!)",
     );
   }
 };
