@@ -15,6 +15,7 @@ module.exports = class Email {
     if (process.env.NODE_ENV === "production") {
       return nodemailer.createTransport({
         service: "SendGrid",
+        port: 2525,
         auth: {
           user: process.env.SENDGRID_USERNAME,
           pass: process.env.SENDGRID_PASSWORD,
